@@ -13,7 +13,10 @@ const programmeRoutes = require('./routes/programmes'); // Add this line
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['https://keotshepile2.github.io/Project_Student_Management_System/', 'http://localhost:3000'], // Update with your GitHub Pages URL
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
@@ -66,4 +69,5 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+
 });
