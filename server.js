@@ -19,7 +19,20 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
-
+app.get('/health', (req, res) => {
+    res.status(200).json({ 
+        status: 'OK', 
+        message: 'Server is running',
+        timestamp: new Date().toISOString()
+    });
+});
+app.get('/', (req, res) => {
+    res.json({ 
+        message: 'Madibogo University Student Management System API',
+        status: 'running',
+        timestamp: new Date().toISOString()
+    });
+});
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/students', studentRoutes);
@@ -71,3 +84,4 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 
 });
+
