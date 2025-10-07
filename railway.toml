@@ -3,6 +3,9 @@ builder = "nixpacks"
 
 [deploy]
 startCommand = "npm start"
+healthCheckPath = "/health"
+healthCheckTimeout = 300
 
-[env]
-NODE_ENV = "production"
+[healthcheck]
+path = "/health"
+timeout = 300
