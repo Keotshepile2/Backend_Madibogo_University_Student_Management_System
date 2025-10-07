@@ -34,31 +34,8 @@ function createConnection() {
     return mysql.createConnection(config);
 }
 
-// Test connection
-const connection = createConnection();
+// REMOVED THE AUTOMATIC CONNECTION TEST
+// This was causing the container to stop because connection.end() was being called
 
-connection.connect((err) => {
-    if (err) {
-        console.log('❌ Database connection failed:', err.message);
-        console.log('💡 Make sure MySQL service is provisioned on Railway');
-    } else {
-        console.log('✅ Database connected successfully!');
-        
-        // Test query
-        connection.query('SELECT 1 + 1 AS result', (err, results) => {
-            if (err) {
-                console.log('Query test failed:', err.message);
-            } else {
-                console.log('Database query test successful. Result:', results[0].result);
-            }
-            connection.end();
-        });
-    }
-});
-
-// Export the createConnection function
-function getConnection() {
-    return createConnection();
-}
-
-module.exports = getConnection;
+// Export the createConnection function directly
+module.exports = createConnection;
